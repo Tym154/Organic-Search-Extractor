@@ -1,0 +1,21 @@
+[tool.black]
+line-length = 100
+target-version = ['py312']
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+select = ["E", "F", "W", "I"] # Errors, Fatal, Warnings, Isort
+ignore = []
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true # Forces all functions to have type hints
+disallow_incomplete_defs = true
+ignore_missing_imports = true # Prevents errors for third-party libs like SerpApi
+
+[tool.pytest.ini_options]
+addopts = "--cov=. --cov-report=term-missing --cov-fail-under=95"
+testpaths = ["tests"]

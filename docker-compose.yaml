@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+      - LOG_LEVEL=DEBUG
+      - PORT=5000
+    env_file:
+      - .env
+    command: flask run --host=0.0.0.0 --port=5000 --debug

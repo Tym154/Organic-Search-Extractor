@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Search Extractor</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Google Organic Search Extractor</h1>
+        
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Enter keyword or phrase..." required>
+            <button type="submit" id="search-btn">Search</button>
+        </form>
+
+        <div id="status-message" class="hidden"></div>
+
+        <div id="results-container" class="hidden">
+            <div class="results-header">
+                <h2>Results</h2>
+                <button id="download-btn">Download JSON</button>
+            </div>
+            
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Title</th>
+                        <th>Snippet</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body"></tbody>
+            </table>
+        </div>
+    </main>
+    <script src="/static/app.js"></script>
+</body>
+</html>

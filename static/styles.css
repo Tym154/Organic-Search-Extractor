@@ -1,0 +1,92 @@
+/* Define theme variables for consistent styling */
+:root {
+    --bg-color: #f9fafb;
+    --text-color: #111827;
+    --border-color: #e5e7eb;
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --error-color: #ef4444;
+}
+
+/* Base styles for the page */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    margin: 0;
+    padding: 2rem;
+}
+
+/* Center the main content area */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Form layout */
+#search-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Input field styling */
+#search-input {
+    flex: 1; /* Take up remaining horizontal space */
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* General button styling */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover { background-color: var(--primary-hover); }
+button:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* Utility class to hide elements */
+.hidden { display: none !important; }
+
+/* Status message states (loading vs error) */
+#status-message {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+.status-loading { background-color: #dbeafe; color: #1e40af; }
+.status-error { background-color: #fee2e2; color: #991b1b; }
+
+/* Table styling */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+th { background-color: var(--bg-color); }
+td a { color: var(--primary-color); text-decoration: none; }
+td a:hover { text-decoration: underline; }
