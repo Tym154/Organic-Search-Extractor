@@ -1,94 +1,49 @@
-<div align="center">
-
 # Organic Search Extractor
 
-A Flask application that retrieves Google organic search results using SerpApi, displays them in a web interface, and allows exporting results as JSON.
-
-<p>
-  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg">
-  <img src="https://img.shields.io/badge/Flask-3.x-black.svg">
-  <img src="https://img.shields.io/badge/Coverage-98%25-brightgreen.svg">
-  <img src="https://img.shields.io/badge/Docker-Supported-blue.svg">
-  <img src="https://img.shields.io/badge/Code%20Style-Black-black.svg">
-  <img src="https://img.shields.io/badge/Lint-Ruff-orange.svg">
-  <img src="https://img.shields.io/badge/Types-Mypy-blue.svg">
-</p>
-
-</div>
-
----
-
-## Table of Contents
-
-* Features
-* Architecture
-* Project Structure
-* Environment Variables
-* Local Development
-* Docker
-* Testing
-* Code Quality
-* API Endpoints
-
----
+A Flask application that retrieves Google organic search results using SerpApi, displays them in a web interface, and allows exporting the results as JSON.
 
 ## Features
 
-| Feature         | Description                         |
-| --------------- | ----------------------------------- |
-| Google Search   | Query Google via SerpApi            |
-| Organic Results | Extract only organic search results |
-| JSON Export     | Download results as JSON            |
-| Validation      | Input validation and error handling |
-| Testing         | 98%+ test coverage                  |
-| Docker Support  | Docker & Docker Compose support     |
-| Code Quality    | Black, Ruff, and Mypy configured    |
+- Search Google results through SerpApi
+- Extract only organic search results
+- Export results as JSON
+- Input validation and error handling
+- Unit tests with 95%+ coverage
+- Docker and Docker Compose support
+- Black, Ruff, and Mypy configuration
 
 ---
 
 ## Architecture
 
-```text id="arch1"
-┌─────────────────────────┐
-│ Frontend                │
-│ HTML / CSS / JavaScript │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│ Flask Routes            │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│ Service Layer           │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│ Parsing & Models        │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│ SerpApi                 │
-└─────────────────────────┘
+```
+Frontend (HTML/CSS/JavaScript)
+            │
+            ▼
+      Flask Routes
+            │
+            ▼
+      Service Layer
+            │
+            ▼
+     Parsing & Models
+            │
+            ▼
+         SerpApi
 ```
 
----
+### Project Structure
 
-## Project Structure
-
-```text id="structure1"
+```text
 .
-├── models/             # Dataclasses used for API responses
-├── routes/             # Flask API endpoints
-├── services/           # SerpApi integration and parsing logic
-├── static/             # JavaScript and CSS assets
-├── templates/          # HTML templates
-├── tests/              # Unit tests
-├── app.py              # Application entry point
-├── config.py           # Configuration handling
+├── models/            # Dataclasses used for API responses
+├── routes/            # Flask API endpoints
+├── services/          # SerpApi integration and parsing logic
+├── static/            # JavaScript and CSS files
+├── templates/         # HTML templates
+├── tests/             # Unit tests
+├── app.py             # Application entry point
+├── config.py          # Configuration handling
 ├── Dockerfile
 ├── docker-compose.yaml
 ├── requirements.txt
@@ -102,16 +57,16 @@ A Flask application that retrieves Google organic search results using SerpApi, 
 
 Create a `.env` file from `.env.example`.
 
-| Variable        | Required | Description                               |
-| --------------- | -------- | ----------------------------------------- |
-| SERPAPI_API_KEY | Yes      | SerpApi API key                           |
-| FLASK_ENV       | No       | development / production / testing        |
-| PORT            | No       | Application port (default: 5000)          |
-| LOG_LEVEL       | No       | DEBUG / INFO / WARNING / ERROR / CRITICAL |
+| Variable | Required | Description |
+|-----------|-----------|-------------|
+| SERPAPI_API_KEY | Yes | SerpApi API key |
+| FLASK_ENV | No | development, production, testing |
+| PORT | No | Application port (default: 5000) |
+| LOG_LEVEL | No | DEBUG, INFO, WARNING, ERROR, CRITICAL |
 
 Example:
 
-```env id="env1"
+```env
 SERPAPI_API_KEY=your_api_key
 FLASK_ENV=development
 PORT=5000
@@ -122,38 +77,38 @@ LOG_LEVEL=INFO
 
 ## Local Development
 
-### Create virtual environment
+### Create a virtual environment
 
-```bash id="venv1"
+```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
 ### Install dependencies
 
-```bash id="deps1"
+```bash
 pip install --upgrade pip
 pip install -r requirements.txt
-pip install -r requirements-dev.txt
+pip install -r requirements-dev.txt # For development testing and linting
 ```
 
-### Configure environment
+### Configure environment variables
 
-```bash id="env2"
+```bash
 cp .env.example .env
 ```
 
-Update the API key in `.env`.
+Update the API key inside `.env`.
 
-### Run application
+### Run the application
 
-```bash id="run1"
+```bash
 python app.py
 ```
 
-Application will be available at:
+The application will be available at:
 
-```text id="url1"
+```text
 http://localhost:5000
 ```
 
@@ -161,9 +116,9 @@ http://localhost:5000
 
 ## Docker
 
-Run with Docker Compose:
+### Run with Docker Compose
 
-```bash id="docker1"
+```bash
 docker compose up --build
 ```
 
@@ -171,21 +126,21 @@ docker compose up --build
 
 ## Testing
 
-Run tests:
+Run all tests:
 
-```bash id="test1"
+```bash
 pytest
 ```
 
-Generate coverage report:
+Run tests with coverage:
 
-```bash id="cov1"
+```bash
 pytest --cov=. --cov-report=html
 ```
 
-Coverage:
+Current coverage:
 
-```text id="cov2"
+```text
 98%+
 ```
 
@@ -193,37 +148,33 @@ Coverage:
 
 ## Code Quality
 
-### Formatting
+Format check:
 
-Check:
-
-```bash id="fmt1"
+```bash
 black --check .
 ```
 
-Apply:
+If not satisfied:
 
-```bash id="fmt2"
+```bash
 black .
 ```
 
-### Linting
+Linting:
 
-Check:
-
-```bash id="lint1"
+```bash
 ruff check .
 ```
 
-Fix:
+If not satisfied:
 
-```bash id="lint2"
+```bash
 ruff --fix
 ```
 
-### Type checking
+Static type checking:
 
-```bash id="type1"
+```bash
 mypy .
 ```
 
@@ -233,11 +184,15 @@ mypy .
 
 ### Health Check
 
-GET `/health`
+**GET**
+
+```http
+/health
+```
 
 Response:
 
-```json id="api1"
+```json
 {
   "status": "ok"
 }
@@ -247,11 +202,15 @@ Response:
 
 ### Search
 
-POST `/api/search`
+**POST**
+
+```http
+/api/search
+```
 
 Request:
 
-```json id="api2"
+```json
 {
   "query": "open source llms"
 }
@@ -259,7 +218,7 @@ Request:
 
 Success Response:
 
-```json id="api3"
+```json
 {
   "query": "open source llms",
   "timestamp": "2026-06-01T17:45:12Z",
@@ -276,7 +235,7 @@ Success Response:
 
 Error Response:
 
-```json id="api4"
+```json
 {
   "error": "Missing query parameter"
 }
@@ -288,26 +247,18 @@ Error Response:
 
 The test suite covers:
 
-* API endpoints
-* Application startup and configuration validation
-* Health endpoint
-* SerpApi client behavior
-* Error handling paths
-* Organic result parsing
+- API endpoints
+- Application startup and configuration validation
+- Health endpoint
+- SerpApi client behavior
+- Error handling paths
+- Organic result parsing
 
 ---
 
 ## Notes
 
-* Only organic Google search results are returned.
-* Results can be downloaded as JSON from the web interface.
-* SerpApi errors are translated into appropriate API responses.
-* Docker support is included for local development and deployment.
-
----
-
-<div align="center">
-
-Made with Flask, SerpApi, Docker, and Python.
-
-</div>
+- Only organic Google search results are returned.
+- Results can be downloaded as JSON from the web interface.
+- SerpApi errors are translated into appropriate API responses.
+- The application includes Docker support for local development and deployment.

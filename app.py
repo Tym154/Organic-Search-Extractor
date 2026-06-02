@@ -6,12 +6,16 @@ from config import Config
 from routes.health import health_bp
 from routes.search import search_bp
 
-# Sets a standard logging format including the exact time, the module that fired the log, the severity and the message.
+# Sets a standard logging format including the exact time, the module that fired the log,
+# the severity and the message.
 logging.basicConfig(
     level=getattr(logging, Config.LOG_LEVEL, logging.INFO),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
+logging.getLogger("urllib3").setLevel(
+    logging.WARNING
+)  # Because we dont want the API key in our logs
 
 
 def create_app() -> Flask:
